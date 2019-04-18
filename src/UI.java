@@ -8,10 +8,8 @@ import com.teradata.template.TemplateMachine;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class UI extends JDialog {
@@ -19,10 +17,10 @@ public class UI extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField textFieldIp;
-    private JTextField textFieldUser;
-    private JTextField textFieldPassword;
-    private JTextField textFieldDatabase;
+    private JTextField textFieldObjectName;
+    private JTextField textFieldClassName;
+    private JTextField textFieldTitle;
+    private JTextField textFieldKey;
     private JTextField textFieldTableName;
     private AnActionEvent anActionEvent;
 
@@ -56,18 +54,19 @@ public class UI extends JDialog {
 
     private void onOK() {
         // add your code here
-        String key = textFieldDatabase.getText();
-        String className = textFieldDatabase.getText();
-        String objectName = textFieldIp.getText();
-        String title = textFieldTableName.getText();
-//        System.out.println(textFieldDatabase.getText());
-//        System.out.println(textFieldTableName.getText());
-//        System.out.println(textFieldUser.getText());
-//        System.out.println(textFieldPassword.getText());
-//        System.out.println(textFieldIp.getText());
+        String key = textFieldKey.getText();
+        String className = textFieldClassName.getText();
+        String objectName = textFieldObjectName.getText();
+        String title = textFieldTitle.getText();
+        String tableName = textFieldTableName.getText();
+        System.out.println(key);
+        System.out.println(className);
+        System.out.println(objectName);
+        System.out.println(title);
+        System.out.println(tableName);
         DB db = new DB();
         try {
-            List<FieldInfo> list = db.getTableFieldsBySql("log_info");
+            List<FieldInfo> list = db.getTableFieldsBySql(tableName);
             HashMap<String, Object> map = new HashMap<>();
             map.put("key", key);
             map.put("className", className);

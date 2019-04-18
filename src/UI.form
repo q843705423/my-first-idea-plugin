@@ -62,7 +62,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="ip"/>
+              <text value="objectName"/>
             </properties>
           </component>
           <vspacer id="52314">
@@ -70,7 +70,7 @@
               <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
             </constraints>
           </vspacer>
-          <component id="911a" class="javax.swing.JTextField" binding="textFieldIp">
+          <component id="911a" class="javax.swing.JTextField" binding="textFieldObjectName">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -83,10 +83,10 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="user"/>
+              <text value="className"/>
             </properties>
           </component>
-          <component id="62c59" class="javax.swing.JTextField" binding="textFieldUser">
+          <component id="62c59" class="javax.swing.JTextField" binding="textFieldClassName">
             <constraints>
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -99,10 +99,10 @@
               <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="password"/>
+              <text value="title"/>
             </properties>
           </component>
-          <component id="6ccfc" class="javax.swing.JTextField" binding="textFieldPassword">
+          <component id="6ccfc" class="javax.swing.JTextField" binding="textFieldTitle">
             <constraints>
               <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -115,10 +115,10 @@
               <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="database"/>
+              <text value="key"/>
             </properties>
           </component>
-          <component id="81609" class="javax.swing.JTextField" binding="textFieldDatabase">
+          <component id="81609" class="javax.swing.JTextField" binding="textFieldKey">
             <constraints>
               <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
