@@ -1,0 +1,237 @@
+﻿<template>
+  <div>
+    <div style="margin: 20px 20px;">
+      <el-input v-model="search.$$$key$$$" placeholder="$$$title$$$ID" style="width:400px"/>
+      <el-button type="primary" @click="request$$$className$$$List">搜索</el-button>
+      <el-button type="success" @click="popUpInsertInterface">新增</el-button>
+    </div>
+    <el-table
+      style="margin: 10px 10px 10px 10px"
+      v-loading="false"
+      :data="$$$objectName$$$List"
+      element-loading-text="正在加载"
+      border="" fit="">
+
+      $$$fieldList>list>/contentTableColumn.txt$$$
+
+      <el-table-column align="center" label="操作">
+        <template slot-scope="scope">
+          <el-button type="warning" @click="popUpUpdateInterface(scope.row)">修改</el-button>
+          <el-button type="danger" @click="popUpDeleteInterface(scope.row)">删除</el-button>
+          <el-button type="success" @click="popUpUpdateMenuInterface(scope.row)">赋权</el-button>
+
+        </template>
+      </el-table-column>
+
+
+    </el-table>
+    <el-dialog :title="dialog.title" :visible.sync="dialog.show">
+      <el-form ref="form" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
+
+$$$fieldList>list>/contentFormItem.txt$$$
+
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+
+        <el-button type="success" @click="confirmInsert" v-if="this.dialog.isInsert">确定</el-button>
+        <el-button type="success" @click="confirmUpdate" v-if="this.dialog.isUpdate">确定</el-button>
+        <el-button type="info" @click="dialog.show =false">取消</el-button>
+      </span>
+    </el-dialog>
+  </div>
+</template>
+<style>
+
+</style>
+<script>
+  import axios from 'axios'
+  import { Message, MessageBox } from 'element-ui'
+  import Cookies from 'js-cookie'
+
+  export default {
+    created: function() {
+      this.request$$$className$$$List()
+    },
+    data: function() {
+      return {
+        search: {
+          $$$key$$$: ''
+        },
+        dialog: {
+          show: false,
+          title: '',
+          isInsert: false,
+          isUpdate: false
+        },
+        $$$objectName$$$List: [],
+        form: {
+
+        $$$fieldList>list>/contentForm.txt$$$
+
+        },
+        listQuery: {
+          current: 1
+        }
+
+      }
+    }, methods: {
+      popUpUpdateInterface(node) {
+
+        this.dialog.show = true
+        this.dialog.isInsert = false
+        this.dialog.isUpdate = true
+        this.dialog.title = '更新$$$title$$$'
+        this.form = node
+        console.log(node)
+      },
+      popUpUpdateMenuInterface(node) {
+        console.log(node)
+      },
+      popUpInsertInterface() {
+        this.form = {}
+        this.dialog.show = true
+        this.dialog.isInsert = true
+        this.dialog.isUpdate = false
+        this.dialog.title = '新增$$$title$$$'
+      },
+      popUpDeleteInterface(node) {
+        this.confirmDelete(node.$$$key$$$)
+      },
+      request$$$className$$$List() {
+        let params = {
+          current: this.current
+        }
+        if (this.search.$$$key$$$ !== '') {
+          params['$$$key$$$'] = this.search.$$$key$$$
+        }
+        axios({
+          url: 'api/admin/$$$objectName$$$/page',
+          method: 'GET',
+          headers: { Authorization: 'bearer ' + Cookies.get('SET_ACCESS_TOKEN') },
+          params: params
+        }).then(res => {
+          this.$$$objectName$$$List = res.data.data.records
+          console.log(this.$$$objectName$$$List)
+        }).catch(res => {
+          Message({
+            message: res,
+            type: 'error',
+            duration: 2000
+          })
+        })
+      },
+      insert$$$className$$$() {
+        axios({
+          url: 'api/admin/$$$objectName$$$',
+          method: 'POST',
+          headers: { Authorization: 'bearer ' + Cookies.get('SET_ACCESS_TOKEN') },
+          data: this.form
+        }).then(res => {
+          console.log(res)
+          Message({
+            message: '新增$$$title$$$成功',
+            type: 'success',
+            duration: 2000
+          })
+          this.dialog.show = false;
+          this.request$$$className$$$List()
+        }).catch(res => {
+          Message({
+            message: res,
+            type: 'error',
+            duration: 2000
+          })
+        })
+      },
+      update$$$className$$$() {
+        axios({
+          url: 'api/admin/$$$objectName$$$',
+          method: 'PUT',
+          headers: { Authorization: 'bearer ' + Cookies.get('SET_ACCESS_TOKEN') },
+          data: this.form
+        }).then(res => {
+          console.log(res)
+          Message({
+            message: "修改$$$title$$$成功",
+            type: 'success',
+            duration: 2000
+          })
+          this.dialog.show = false;
+          this.request$$$className$$$List()
+        }).catch(res => {
+          Message({
+            message: res,
+            type: 'error',
+            duration: 2000
+          })
+        })
+      },
+      delete$$$className$$$($$$key$$$) {
+        axios({
+          url: 'api/admin/$$$objectName$$$/' + $$$key$$$,
+          method: 'DELETE',
+          headers: { Authorization: 'bearer ' + Cookies.get('SET_ACCESS_TOKEN') },
+          data: {}
+        }).then(res => {
+          console.log(res)
+          Message({
+            message:"删除$$$title$$$成功",
+            type: 'success',
+            duration: 2000
+          })
+          this.dialog.show = false;
+          this.request$$$className$$$List()
+        }).catch(res => {
+          Message({
+            message: res,
+            type: 'error',
+            duration: 2000
+          })
+        })
+      },
+      confirmDelete($$$key$$$) {
+        MessageBox.confirm(
+          '是否删除该$$$title$$$?',
+          '确定删除该$$$title$$$',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }
+        ).then((res) => {
+          this.delete$$$className$$$($$$key$$$)
+        })
+      },
+      confirmUpdate() {
+        MessageBox.confirm(
+          '是否修改$$$title$$$信息?',
+          '确定修改$$$title$$$信息',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }
+        ).then((res) => {
+          this.update$$$className$$$()
+        })
+      },
+      confirmInsert() {
+        MessageBox.confirm(
+          '是否新增该$$$title$$$?',
+          '确定新增该$$$title$$$',
+          {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }
+        ).then((res) => {
+          this.insert$$$className$$$()
+        })
+      }
+    }, watch: {
+      'test': function() {
+
+      }
+    }
+  }
+</script>

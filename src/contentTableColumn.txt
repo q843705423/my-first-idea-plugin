@@ -1,0 +1,5 @@
+<el-table-column align="center" label="$$$label$$$">
+    <template slot-scope="scope">
+        {{ scope.row.$$$property$$$ }}
+    </template>
+</el-table-column>

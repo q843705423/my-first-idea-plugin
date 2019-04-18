@@ -1,6 +1,6 @@
 package com.teradata.db;
 
-public class DB extends DataBaseUtil{
+public class DB extends com.teradata.db.DataBaseUtil {
     @Override
     protected String getUser() {
         return "root";
@@ -13,7 +13,7 @@ public class DB extends DataBaseUtil{
 
     @Override
     protected String getUrl() {
-        return "jdbc:mysql://10.73.134.229:3306/apicloud?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8";
+        return "jdbc:mysql://127.0.0.1:3306/man?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2B8";
     }
 
     @Override
@@ -28,6 +28,7 @@ public class DB extends DataBaseUtil{
 
     @Override
     protected String getPassword() {
-        return "sdfa@eWs127";
+        return "root";
+//        return "sdfa@eWs127";
     }
 }

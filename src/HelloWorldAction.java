@@ -11,6 +11,7 @@ public class HelloWorldAction extends AnAction {
 
 
         UI ui = new UI();
+        ui.setAnActionEvent(anActionEvent);
         ui.pack();
         ui.setVisible(true);
 
