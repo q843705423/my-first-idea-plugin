@@ -1,3 +1,3 @@
 <el-form-item label="$$$label$$$">
-  <el-input v-model="$$$property$$$"/>
+  <el-input v-model="form.$$$property$$$"/>
 </el-form-item>
